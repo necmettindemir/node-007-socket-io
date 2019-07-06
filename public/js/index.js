@@ -7,14 +7,7 @@ var socket = io();
 socket.on('connect', function() {
     console.log('connected to server');
 
-/*
-    var emailJsonObjV2 = {
-        to:'jen@example.com',
-        text:'hey. this is andrew'
-    };
 
-    socket.emit('createEmail',emailJsonObjV2);
-*/
 
 var createMessageObjV2 = {
     from:'Andrew',
@@ -30,11 +23,7 @@ socket.on('disconnect', function()  {
 });
 
 
-/*
-socket.on('newEmail', function(emailJsonObj) {   
-    console.log('new email', emailJsonObj);
-});
-*/
+
 
 socket.on('newMessage', function(messageJsonObj) {   
     console.log('new message', messageJsonObj);

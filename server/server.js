@@ -30,35 +30,34 @@ io.on('connection', (socket) => {
 
     
     //--------------
+
+
 /*
-    var emailJsonObj = {
-        from:'mike@example.com',
-        text:'hey.. what is gooing on!',
-        createAt:'123'
+    var messageJsonObj = {
+        from:'john',
+        text:'see you then',
+        createAt:'3434343'
     };
-    
-    socket.emit('newEmail', emailJsonObj);
+
+    socket.emit('newMessage', messageJsonObj);
 */
-
-var messageJsonObj = {
-    from:'john',
-    text:'see you then',
-    createAt:'3434343'
-};
-
-socket.emit('newMessage', messageJsonObj);
-
     //--------------
 
-/*
-    socket.on('createEmail', (createEmailObj) => {
-        console.log('createEmail from client',createEmailObj);
-    });
-*/
 
-socket.on('createMessage', (message) => {
-    console.log('createmessage from client',message);
-});
+
+    socket.on('createMessage', (message) => {
+
+        console.log('createmessage from client',message);
+
+        //---- broadcasting to ALL connected clients --
+        io.emit('newMessage', {
+            from:message.from,
+            text:message.text,
+            createdAt: new Date().getTime()
+        });
+        //---- /broadcasting to ALL connected clients --
+
+    });
 
 
     //--------------
